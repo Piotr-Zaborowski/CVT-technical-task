@@ -41,4 +41,15 @@ def add_article(request):
     serializer = ArticleAddSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
-    return Response(serializer.data)
+        return Response(serializer.data)
+    return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+def edit_article(request, article_id):
+    article = Article.objects.get(pk=article_id)
+    serializer = ArticleAddSerializer(article, data=request.data, partial=True)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(status=status.HTTP_400_BAD_REQUEST)
