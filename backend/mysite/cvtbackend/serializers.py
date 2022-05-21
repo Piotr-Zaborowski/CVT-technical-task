@@ -12,3 +12,9 @@ class ArticleSingleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
         fields = ['title', 'content', 'views']
+
+
+class ArticleAddSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Article
+        fields = ['title', 'content']

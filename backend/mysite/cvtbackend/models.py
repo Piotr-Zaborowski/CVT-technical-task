@@ -6,4 +6,4 @@ from django.db import models
 class Article(models.Model):
     title = models.CharField(max_length=500)
     content = models.CharField(max_length=10000)
-    views = models.BigIntegerField()
+    views = models.BigIntegerField(default=0, editable=False)
