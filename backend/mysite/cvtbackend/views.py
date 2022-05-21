@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from .models import Article
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializers import ArticleListSerializer
+from .serializers import ArticleListSerializer, ArticleSingleSerializer
 
 
 @api_view(['GET'])
@@ -17,8 +17,9 @@ def get_all_articles(request):
     return Response(serializer.data)
 
 
+@api_view(['GET'])
 def article_by_id(request, article_id):
     article = Article.objects.get(pk=article_id)
-    print(len(Article))
-    return HttpResponse(f"{article.title};;;{article.content};;;{article.views}")
+    serializer = ArticleSingleSerializer(article, many=False)
+    return Response(serializer.data)
 
