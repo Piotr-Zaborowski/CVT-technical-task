@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from rest_framework import status
 from .models import Article
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -27,3 +27,10 @@ def get_article_by_id(request, article_id):
     article.save()
     serializer = ArticleSingleSerializer(article, many=False)
     return Response(serializer.data)
+
+
+@api_view(['DELETE'])
+def delete_article_by_id(request, article_id):
+    article = Article.objects.get(pk=article_id)
+    article.delete()
+    return Response(status=status.HTTP_204_NO_CONTENT)
