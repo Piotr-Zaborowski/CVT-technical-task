@@ -1,13 +1,16 @@
-from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Article
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
 
+@api_view(['GET'])
 def index(request):
-    return HttpResponse("Hello, world!")
+    return Response({'response_text' : 'HelloWorld'})
 
 
 def article_by_id(request, article_id):
     article = Article.objects.get(pk=article_id)
     print(len(Article))
     return HttpResponse(f"{article.title};;;{article.content};;;{article.views}")
+
