@@ -3,20 +3,19 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
-import HomeIcon from "@mui/icons-material/Home";
 import {DeleteForever, Edit} from "@mui/icons-material";
 
-export default function MultiActionAreaCard() {
-    return (
+
+const Feed = ({ id, title, content }: { id: number; title: string; content: string }) => {
+    return(
         <Card variant="outlined" sx={{ margin: 0 }}>
             <CardActionArea>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        Lizard
+                        {title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
+                        {content}
                     </Typography>
                 </CardContent>
             </CardActionArea>
@@ -33,5 +32,13 @@ export default function MultiActionAreaCard() {
                 </Button>
             </CardActions>
         </Card>
-    );
+
+    )
+}
+
+export default Feed
+
+function reloadFunction ()
+{
+    window.location.reload();
 }
