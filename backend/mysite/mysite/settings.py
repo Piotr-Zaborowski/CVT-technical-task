@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "corsheaders",
     'cvtbackend.apps.CvtbackendConfig',
     'rest_framework',
     'django.contrib.admin',
@@ -42,6 +43,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -124,6 +127,9 @@ USE_I18N = True
 
 USE_TZ = True
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
