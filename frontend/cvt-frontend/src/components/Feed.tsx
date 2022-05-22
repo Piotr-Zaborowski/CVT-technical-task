@@ -6,7 +6,7 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 import {DeleteForever, Edit} from "@mui/icons-material";
 
 
-const Feed = ({ id, title, content }: { id: number; title: string; content: string }) => {
+const Feed = ({ id, title, content, total }: { id: number; title: string; content: string; total: number}) => {
     return(
         <Card variant="outlined" sx={{ margin: 0 }}>
             <CardActionArea>
@@ -37,8 +37,3 @@ const Feed = ({ id, title, content }: { id: number; title: string; content: stri
 }
 
 export default Feed
-
-function reloadFunction ()
-{
-    window.location.reload();
-}

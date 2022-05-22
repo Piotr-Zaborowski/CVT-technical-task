@@ -6,12 +6,30 @@ import MultiActionAreaCard from "./components/Feed";
 
 
 const myApi = axios.create({
-    baseURL: 'http://127.0.0.1:8000/app/'
+    baseURL: 'http://127.0.0.1:8000/app/',
+    headers: {
+        "Content-type": "application/json"
+    }
 })
 
+let idArr:number [] = new Array()
+let titleArr:string [] = new Array()
+let contentArr:string [] = new Array()
+
+
 myApi.get('/getallarticles').then( res => {
-    console.log(res.data)
+    for(let elem in res.data)
+    {
+        idArr.push(res.data[elem].id)
+        titleArr.push(res.data[elem].title)
+        contentArr.push(res.data[elem].content)
+    }
 })
+
+console.log(idArr)
+console.log(titleArr)
+console.log(contentArr)
+
 
 function App() {
   return (
@@ -19,7 +37,9 @@ function App() {
         <Navbar/>
           <Grid alignItems={"center"} justifyContent={"center"} marginLeft={'15%'} marginRight={'15%'}>
               <Stack  spacing={2} margin={2}>
-                  <MultiActionAreaCard content={"CONTENT FROM MAIN"} id={10} title={"Sherlock Holmes"}/>
+                  <Box id='res_viewer'>
+                      <MultiActionAreaCard content={"CONTENT FROM MAIN"} id={10} title={"Sherlock Holmes"} total={5} />
+                  </Box>
               </Stack>
           </Grid>
       </Box>
