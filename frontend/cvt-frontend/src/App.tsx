@@ -1,6 +1,16 @@
 import {Box, Button, Container, Grid, Stack} from "@mui/material";
 import Navbar from "./components/Navbar";
 import Feed from "./components/Feed";
+import axios from "axios";
+
+
+const myApi = axios.create({
+    baseURL: 'http://127.0.0.1:8000/app/'
+})
+
+myApi.get('/getallarticles').then( res => {
+    console.log(res.data)
+})
 
 function App() {
   return (
@@ -22,7 +32,6 @@ function App() {
                   <Feed/>
               </Stack>
           </Grid>
-
       </Box>
   );
 }
