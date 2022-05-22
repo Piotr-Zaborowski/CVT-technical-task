@@ -13,8 +13,8 @@ const Navbar = () => {
     return(
         <AppBar position="sticky">
             <StyledToolbar>
-                <Button variant="outlined" color="secondary" startIcon={<HomeIcon />}>Main</Button>
-                <Typography variant={"h6"}>CVT Services Blog</Typography>
+                <Button variant="outlined" onClick={reloadFunction} color="secondary" startIcon={<HomeIcon />}>Main</Button>
+                <Typography variant={"h6"} color={"#1D82F5"}>CVT Services Blog</Typography>
                 <Button variant="contained" color="secondary">Login</Button>
             </StyledToolbar>
         </AppBar>
@@ -22,3 +22,8 @@ const Navbar = () => {
 }
 
 export default Navbar
+
+function reloadFunction ()
+{
+    window.location.reload();
+}
