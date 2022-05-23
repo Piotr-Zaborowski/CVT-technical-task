@@ -3,8 +3,9 @@ import Navbar from "./components/Navbar";
 import Feed from "./components/Feed";
 import AddComp from "./components/AddComp";
 import AddIcon from '@mui/icons-material/Add';
+import axios from "axios";
 
-
+axios.defaults.baseURL = 'http://127.0.0.1:8000/app';
 
 function App() {
     return (
