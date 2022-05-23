@@ -36,12 +36,13 @@ function handleLoad() {
 let title = '';
 let content = '';
 let views = '';
+let id =0;
 
 const Feed = () => {
 
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [openM1, setOpenM1M1] = React.useState(false);
+    const handleOpenM1 = () => setOpenM1M1(true);
+    const handleCloseM1 = () => setOpenM1M1(false);
 
         const [myContent, setContent] = useState([])
         const fetchData = () => {
@@ -79,8 +80,9 @@ const Feed = () => {
             title = "Title: " + response.data.title
             content = "Content: " + response.data.content
             views = "Views: " + response.data.views.toString()
+            id = response.data.id
         }).then(()=>{
-            handleOpen()
+            handleOpenM1()
         })
     }
 
@@ -106,17 +108,12 @@ const Feed = () => {
                         }} size="large" startIcon={<DeleteForever />}>
                             DELETE
                         </Button >
-                        <Button style={{
-                            color: "#68ee06",
-                        }} size="large" startIcon={<Edit />}>
-                            EDIT
-                        </Button>
                     </CardActions>
                 </Card>
             )}
             <Modal
-                open={open}
-                onClose={handleClose}
+                open={openM1}
+                onClose={handleCloseM1}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
@@ -130,6 +127,12 @@ const Feed = () => {
                     <div
                         dangerouslySetInnerHTML={{__html: views}}
                     />
+                    <Button style={{
+                        color: "#68ee06",
+                        margin: 2,
+                    }} size="large" startIcon={<Edit />}>
+                        EDIT
+                    </Button>
                 </Box>
             </Modal>
         </div>
