@@ -7,9 +7,17 @@ import {DeleteForever, Edit} from "@mui/icons-material";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
+const myCombinedObject = {
+    id: 0,
+    title: "TEST123",
+    content: "CONTENTTEST123"
+}
+
 let idArr:number [] = new Array()
 let titleArr:string [] = new Array()
 let contentArr:string [] = new Array()
+let iteratorArr:number [] = new Array()
+
 
 const Feed = () => {
         const [myContent, setContent] = useState([])
@@ -20,12 +28,15 @@ const Feed = () => {
                 idArr = []
                 titleArr = []
                 contentArr = []
+                let iterator = 0
 
                 for(let elem in response.data)
                 {
                     idArr.push(response.data[elem].id)
                     titleArr.push(response.data[elem].title)
                     contentArr.push(response.data[elem].content)
+                    iteratorArr.push(iterator)
+                    iterator++
                 }
             })
         }
@@ -34,19 +45,17 @@ const Feed = () => {
             fetchData()
         }, [])
 
-    console.log(contentArr)
-
     return(
         <div id = 'test123'>
-            {idArr.map(customId =>
+            {iteratorArr.map(customId =>
                 <Card key={customId} variant="outlined" sx={{ margin: 0 }}>
                     <CardActionArea>
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="div">
-                                TEST123
+                                {titleArr[customId]}
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                                "CONTENT"
+                                "{contentArr[customId]}
                             </Typography>
                         </CardContent>
                     </CardActionArea>
