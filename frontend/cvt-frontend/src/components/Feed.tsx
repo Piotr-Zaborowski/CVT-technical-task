@@ -2,7 +2,7 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import {Box, Button, CardActionArea, CardActions, Modal} from '@mui/material';
+import {Box, Button, CardActionArea, CardActions, Modal, Stack, TextField} from '@mui/material';
 import {DeleteForever, Edit} from "@mui/icons-material";
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -36,13 +36,19 @@ function handleLoad() {
 let title = '';
 let content = '';
 let views = '';
-let id =0;
+let myId =0;
 
 const Feed = () => {
 
+    //Used for modal after
     const [openM1, setOpenM1M1] = React.useState(false);
     const handleOpenM1 = () => setOpenM1M1(true);
     const handleCloseM1 = () => setOpenM1M1(false);
+
+    //Used for modal for editing
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
         const [myContent, setContent] = useState([])
         const fetchData = () => {
@@ -80,10 +86,26 @@ const Feed = () => {
             title = "Title: " + response.data.title
             content = "Content: " + response.data.content
             views = "Views: " + response.data.views.toString()
-            id = response.data.id
+            myId = postId
         }).then(()=>{
             handleOpenM1()
         })
+    }
+
+    function appPost ()
+    {
+        // @ts-ignore
+        var titlef = document.getElementById('title-text').value
+        // @ts-ignore
+        var contentf = document.getElementById('content-text').value
+
+        axios.put('http://127.0.0.1:8000/app/editarticle/'+myId, {
+            title: titlef,
+            content: contentf
+        }).then( () =>{
+            window.location.reload();
+        })
+
     }
 
 
@@ -127,13 +149,29 @@ const Feed = () => {
                     <div
                         dangerouslySetInnerHTML={{__html: views}}
                     />
-                    <Button style={{
+                    <Button onClick={() => handleOpen()} style={{
                         color: "#68ee06",
                         margin: 2,
                     }} size="large" startIcon={<Edit />}>
                         EDIT
                     </Button>
                 </Box>
+            </Modal>
+
+            <Modal
+                open={open}
+                onClose={handleClose}
+            >
+                <Stack sx={style}>
+                    <Stack  spacing={2} margin={2}>
+                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                            Edit post:
+                        </Typography>
+                        <TextField id="title-text" label="Title" defaultValue={title.slice(7)} variant="outlined" />
+                        <TextField id="content-text" label="Content" defaultValue={content.slice(9)} variant="outlined" />
+                        <Button variant="contained" color="secondary" onClick={appPost}>POST</Button>
+                    </Stack>
+                </Stack>
             </Modal>
         </div>
     )
