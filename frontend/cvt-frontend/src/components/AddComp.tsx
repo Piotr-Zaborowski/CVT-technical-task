@@ -2,6 +2,7 @@ import React from "react";
 import AddIcon from '@mui/icons-material/Add';
 import {Box, Button, Fab, Modal, Stack, TextField, Tooltip} from "@mui/material";
 import Typography from "@mui/material/Typography";
+import axios from "axios";
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -40,7 +41,7 @@ const AddComp = () => {
                         </Typography>
                         <TextField id="title-text" label="Title" variant="outlined" />
                         <TextField id="content-text" label="Content" variant="outlined" />
-                        <Button variant="contained" color="secondary">POST</Button>
+                        <Button variant="contained" color="secondary" onClick={appPost}>POST</Button>
                     </Stack>
                 </Stack>
             </Modal>
@@ -49,3 +50,20 @@ const AddComp = () => {
 }
 
 export default AddComp;
+
+function appPost ()
+{
+    // @ts-ignore
+    var title = document.getElementById('title-text').value
+    // @ts-ignore
+    var content = document.getElementById('content-text').value
+
+    axios.post('http://127.0.0.1:8000/app/addarticle', {
+        title: title,
+        content: content
+    }).then( () =>{
+        window.location.reload();
+    })
+
+}
+
