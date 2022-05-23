@@ -48,7 +48,7 @@ const Feed = () => {
     return(
         <div id = 'test123'>
             {iteratorArr.map(customId =>
-                <Card key={customId} variant="outlined" sx={{ margin: 0 }}>
+                <Card key={customId} variant="outlined" sx={{ margin: 1 }}>
                     <CardActionArea>
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="div">

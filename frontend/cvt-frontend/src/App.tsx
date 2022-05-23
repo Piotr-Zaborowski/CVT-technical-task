@@ -7,7 +7,7 @@ function App() {
     return (
       <Box>
         <Navbar/>
-          <Grid alignItems={"center"} justifyContent={"center"} marginLeft={'15%'} marginRight={'15%'}>
+          <Grid alignItems={"center"} justifyContent={"center"} marginLeft={'13%'} marginRight={'13%'}>
               <Stack  spacing={2} margin={2}>
                   <Box id='res_viewer'>
                       <Feed />
