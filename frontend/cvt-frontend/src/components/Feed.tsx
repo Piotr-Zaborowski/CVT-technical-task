@@ -4,11 +4,37 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import {DeleteForever, Edit} from "@mui/icons-material";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
+let idArr:number [] = new Array()
+let titleArr:string [] = new Array()
+let contentArr:string [] = new Array()
 
-const Feed = ({ id, title, content, total, idArr }: { id: number; title: string; content: string; total: number; idArr:Array<number>}) => {
-    console.log(idArr)
-    alert(idArr)
+const Feed = () => {
+        const [myContent, setContent] = useState([])
+
+        const fetchData = () => {
+            axios.get("http://127.0.0.1:8000/app/getallarticles").then(response => {
+                setContent(response.data)
+                idArr = []
+                titleArr = []
+                contentArr = []
+
+                for(let elem in response.data)
+                {
+                    idArr.push(response.data[elem].id)
+                    titleArr.push(response.data[elem].title)
+                    contentArr.push(response.data[elem].content)
+                }
+            })
+        }
+
+        useEffect(() => {
+            fetchData()
+        }, [])
+
+    console.log(contentArr)
 
     return(
         <div id = 'test123'>
@@ -17,10 +43,10 @@ const Feed = ({ id, title, content, total, idArr }: { id: number; title: string;
                     <CardActionArea>
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="div">
-                                {customId}
+                                TEST123
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                                {content}
+                                "CONTENT"
                             </Typography>
                         </CardContent>
                     </CardActionArea>
