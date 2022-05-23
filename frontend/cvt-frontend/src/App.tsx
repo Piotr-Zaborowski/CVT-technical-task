@@ -5,7 +5,6 @@ import AddComp from "./components/AddComp";
 import AddIcon from '@mui/icons-material/Add';
 
 
-
 function App() {
     return (
       <Box>
