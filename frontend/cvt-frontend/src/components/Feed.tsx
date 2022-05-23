@@ -69,12 +69,12 @@ const Feed = () => {
                                 {titleArr[customId]}
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
-                                "{contentArr[customId]}
+                                {contentArr[customId]}
                             </Typography>
                         </CardContent>
                     </CardActionArea>
                     <CardActions>
-                        <Button style={{
+                        <Button onClick={() => deletePost(idArr[customId])} style={{
                             color: "#ff0000",
                         }} size="large" startIcon={<DeleteForever />}>
                             DELETE
@@ -92,3 +92,12 @@ const Feed = () => {
 }
 
 export default Feed
+
+
+function deletePost(postId:number) {
+    axios.delete('http://127.0.0.1:8000/app/deletearticle/'+postId)
+        .then(() => {
+            alert("POST DELETED");
+            window.location.reload();
+        })
+}
