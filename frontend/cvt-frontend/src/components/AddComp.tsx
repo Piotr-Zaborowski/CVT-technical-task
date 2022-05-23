@@ -58,7 +58,7 @@ function appPost ()
     // @ts-ignore
     var content = document.getElementById('content-text').value
 
-    axios.post('http://127.0.0.1:8000/app/addarticle', {
+    axios.post('addarticle', {
         title: title,
         content: content
     }).then( () =>{

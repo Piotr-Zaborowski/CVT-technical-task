@@ -52,7 +52,7 @@ const Feed = () => {
 
         const [myContent, setContent] = useState([])
         const fetchData = () => {
-            axios.get("http://127.0.0.1:8000/app/getallarticles").then(response => {
+            axios.get("getallarticles").then(response => {
                 setContent(response.data)
                 idArr = []
                 titleArr = []
@@ -82,7 +82,7 @@ const Feed = () => {
     }
 
     function selectPost(postId:number) {
-        axios.get("http://127.0.0.1:8000/app/getarticle/"+postId).then(response => {
+        axios.get("getarticle/"+postId).then(response => {
             title = "Title: " + response.data.title
             content = "Content: " + response.data.content
             views = "Views: " + response.data.views.toString()
@@ -99,7 +99,7 @@ const Feed = () => {
         // @ts-ignore
         var contentf = document.getElementById('content-text').value
 
-        axios.put('http://127.0.0.1:8000/app/editarticle/'+myId, {
+        axios.put('editarticle/'+myId, {
             title: titlef,
             content: contentf
         }).then( () =>{
@@ -181,7 +181,7 @@ export default Feed
 
 
 function deletePost(postId:number) {
-    axios.delete('http://127.0.0.1:8000/app/deletearticle/'+postId)
+    axios.delete('deletearticle/'+postId)
         .then(() => {
             alert("POST DELETED");
             window.location.reload();
