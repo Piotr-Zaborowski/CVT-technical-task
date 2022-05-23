@@ -7,14 +7,17 @@ import {DeleteForever, Edit} from "@mui/icons-material";
 
 
 const Feed = ({ id, title, content, total, idArr }: { id: number; title: string; content: string; total: number; idArr:Array<number>}) => {
+    console.log(idArr)
+    alert(idArr)
+
     return(
-        <div>
+        <div id = 'test123'>
             {idArr.map(customId =>
                 <Card key={customId} variant="outlined" sx={{ margin: 0 }}>
                     <CardActionArea>
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="div">
-                                {title}
+                                {customId}
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
                                 {content}
@@ -35,10 +38,7 @@ const Feed = ({ id, title, content, total, idArr }: { id: number; title: string;
                     </CardActions>
                 </Card>
             )}
-
         </div>
-
-
     )
 }
 

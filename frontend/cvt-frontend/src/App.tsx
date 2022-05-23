@@ -27,18 +27,17 @@ myApi.get('/getallarticles').then( res => {
 })
 
 console.log(idArr)
-console.log(titleArr)
-console.log(contentArr)
 
 
 function App() {
-  return (
+    console.log(idArr)
+    return (
       <Box>
         <Navbar/>
           <Grid alignItems={"center"} justifyContent={"center"} marginLeft={'15%'} marginRight={'15%'}>
               <Stack  spacing={2} margin={2}>
                   <Box id='res_viewer'>
-                      <MultiActionAreaCard content={"CONTENT FROM MAIN"} id={10} title={"Sherlock Holmes"} total={5} idArr={idArr}/>
+                      <Feed content={"CONTENT FROM MAIN"} id={10} title={"Sherlock Holmes"} total={5} idArr={idArr}/>
                   </Box>
               </Stack>
           </Grid>
