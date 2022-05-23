@@ -1,6 +1,9 @@
-import {Box, Button, Container, Grid, Stack} from "@mui/material";
+import {Box, Button, Container, Fab, Grid, Stack} from "@mui/material";
 import Navbar from "./components/Navbar";
 import Feed from "./components/Feed";
+import AddComp from "./components/AddComp";
+import AddIcon from '@mui/icons-material/Add';
+
 
 
 function App() {
@@ -14,6 +17,7 @@ function App() {
                   </Box>
               </Stack>
           </Grid>
+          <AddComp/>
       </Box>
   );
 }
