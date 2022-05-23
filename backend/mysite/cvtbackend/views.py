@@ -12,7 +12,7 @@ def index(request):
 
 @api_view(['GET'])
 def get_all_articles(request):
-    articles = Article.objects.all()
+    articles = Article.objects.all().order_by('-id')
     serializer = ArticleListSerializer(articles, many=True)
     return Response(serializer.data)
 
