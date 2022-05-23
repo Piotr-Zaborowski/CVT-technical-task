@@ -13,30 +13,33 @@ const myCombinedObject = {
     content: "CONTENTTEST123"
 }
 
+let hasShown:boolean = false
+
 let idArr:number [] = new Array()
 let titleArr:string [] = new Array()
 let contentArr:string [] = new Array()
-let iteratorArr:number [] = new Array()
+let iteratorArr:number [] = new Array
 
+window.addEventListener('load', handleLoad);
+
+function handleLoad() {
+    hasShown = false
+}
 
 const Feed = () => {
         const [myContent, setContent] = useState([])
-
         const fetchData = () => {
             axios.get("http://127.0.0.1:8000/app/getallarticles").then(response => {
                 setContent(response.data)
                 idArr = []
                 titleArr = []
                 contentArr = []
-                let iterator = 0
 
                 for(let elem in response.data)
                 {
                     idArr.push(response.data[elem].id)
                     titleArr.push(response.data[elem].title)
                     contentArr.push(response.data[elem].content)
-                    iteratorArr.push(iterator)
-                    iterator++
                 }
             })
         }
@@ -45,6 +48,17 @@ const Feed = () => {
             fetchData()
         }, [])
 
+    let iterator = 0
+    for (let elem in idArr)
+    {
+        if(!hasShown)
+        {
+            iteratorArr.push(iterator)
+            iterator++
+        }
+    }
+
+    hasShown=true
     return(
         <div id = 'test123'>
             {iteratorArr.map(customId =>
