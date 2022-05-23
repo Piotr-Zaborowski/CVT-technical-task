@@ -7,11 +7,6 @@ import {DeleteForever, Edit} from "@mui/icons-material";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
-const myCombinedObject = {
-    id: 0,
-    title: "TEST123",
-    content: "CONTENTTEST123"
-}
 
 let hasShown:boolean = false
 
@@ -57,6 +52,8 @@ const Feed = () => {
             iterator++
         }
     }
+
+
 
     hasShown=true
     return(
